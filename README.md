@@ -1,3 +1,3 @@
-# rich-web-lab2
+# rich-web-lab3
 
--https://github.com/OptimisedRice/rich-web-lab2
+-https://github.com/OptimisedRice/rich-web-lab3

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Countdown</title>
+    <link rel="stylesheet" href="countdown.css">
+    <script type="module" src="countdown.js"></script>
+    <script src="https://unpkg.com/rxjs@^7/dist/bundles/rxjs.umd.min.js"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="form">
+            <form id="input">
+                <div style="flex-direction: row">
+                    <input name="hours" type="number" autocomplete="off" spellcheck="false" min="0" size="1" placeholder="h">
+                    <span>:</span>
+                    <input name="minutes" type="number" autocomplete="off" spellcheck="false" min="0" size="1" placeholder="m">
+                    <span>:</span>
+                    <input name="seconds" type="number" autocomplete="off" spellcheck="false" min="0" size="1" placeholder="s">
+                </div>
+            </form>
+
+            <button form="input" class="button">Start Countdown</button>
+
+        </div>
+        <div class="output">
+            15:32
+        </div>
+    </div>
+</body>
+</html>

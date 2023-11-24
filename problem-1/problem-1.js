@@ -1,6 +1,10 @@
+const {fromEvent} = rxjs;
+
 window.onload= () => {
-    let noteForm = document.getElementById("note_form")
-    noteForm.addEventListener("submit", addNote)
+    let noteForm = document.getElementById("note_form");
+    //noteForm.addEventListener("submit", addNote)
+    const submitSubscription =
+      fromEvent(noteForm, 'submit').subscribe(addNote);
 }
 const addNote = (event) => {
     event.preventDefault();
@@ -29,14 +33,21 @@ const addNote = (event) => {
     let editButton = document.createElement("button");
     editButton.appendChild(document.createTextNode("Edit"));
     editButton.setAttribute("class", "editButton");
-    editButton.addEventListener("click", editNote);
+
+    //editButton.addEventListener("click", editNote);
+    const editClickSubscription =
+      fromEvent(editButton, 'click').subscribe(editNote);
     note.appendChild(editButton);
 
     //create deleteButton element and add listener
     let delButton = document.createElement("button");
     delButton.appendChild(document.createTextNode("Delete"));
     delButton.setAttribute("class", "delButton");
-    delButton.addEventListener("click", delNote);
+
+    //delButton.addEventListener("click", delNote);
+    const deleteClickSubscription =
+      fromEvent(delButton, 'click').subscribe(delNote);
+
     note.appendChild(delButton);
 
     //add note element to the note container
@@ -46,13 +57,18 @@ const addNote = (event) => {
 
 const editNote = (event) => {
     let editButton = event.target;
+    console.log(event);
+    let noteText = event.target.previousElementSibling; //get reference to note text
 
-    //change button text to 'confirm' and change listeners
-    editButton.firstChild.nodeValue = "Confirm";
-    editButton.removeEventListener("click", editNote)
-    editButton.addEventListener("click", confirmNote)
+    let confirmButton = document.createElement("button");
+    confirmButton.appendChild(document.createTextNode("Confirm"));
+    confirmButton.setAttribute("class", "editButton");
 
-    let noteText = event.target.previousSibling; //get reference to note text
+    const confirmClickSubscription =
+      fromEvent(confirmButton, 'click').subscribe(confirmNote);
+    //change button
+    editButton.replaceWith(confirmButton);
+
     let noteInput = document.createElement("textarea"); //create textarea element
     noteInput.appendChild(document.createTextNode(noteText.firstChild.nodeValue)); //insert existing text
     noteText.replaceWith(noteInput); //replace element
@@ -60,17 +76,21 @@ const editNote = (event) => {
 
 const confirmNote = (event) => {
     let confirmButton = event.target;
+    let noteInput = event.target.previousElementSibling; //get textarea reference
 
-    //change button text to 'edit' and change listeners
-    confirmButton.firstChild.nodeValue = "Edit";
-    confirmButton.removeEventListener("click", confirmNote)
-    confirmButton.addEventListener("click", editNote)
+    let editButton = document.createElement("button");
+    editButton.appendChild(document.createTextNode("Edit"));
+    editButton.setAttribute("class", "editButton");
+    const editClickSubscription =
+      fromEvent(editButton, 'click').subscribe(editNote);
+    //change button
+    confirmButton.replaceWith(editButton);
 
-    let noteInput = event.target.previousSibling; //get textarea reference
     let noteContent = document.createElement("p"); //create paragraph element
     noteContent.setAttribute("class","note_content"); //assign class
-    noteContent.appendChild(document.createTextNode(noteInput.value)); //insert changed text
+    noteContent.appendChild(document.createTextNode(noteInput.value)); //insert existing text
     noteInput.replaceWith(noteContent); //replace element
+    noteContent.firs
 }
 
 const delNote = (event) => {
