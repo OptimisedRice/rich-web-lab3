@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Note Taking</title>
+    <link rel="stylesheet" href="problem-3.css">
+    <script type="module" src="problem-3.js"></script>
+    <script src="https://unpkg.com/rxjs@^7/dist/bundles/rxjs.umd.min.js"></script>
+</head>
+<body>
+    <div id="main">
+        <form id="note_form">
+            <label for="note_input">Description:</label>
+            <input id="note_input" name="note_text" type="text">
+            <select name="parent">
+                <option value="null">no parent</option>
+            </select>
+            <input type="submit" value="Add Note">
+        </form>
+        <div id="note_container">
+
+        </div>
+    </div>
+</body>
+</html>

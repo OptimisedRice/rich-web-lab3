@@ -90,7 +90,6 @@ const confirmNote = (event) => {
     noteContent.setAttribute("class","note_content"); //assign class
     noteContent.appendChild(document.createTextNode(noteInput.value)); //insert existing text
     noteInput.replaceWith(noteContent); //replace element
-    noteContent.firs
 }
 
 const delNote = (event) => {
