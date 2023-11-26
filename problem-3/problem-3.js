@@ -107,12 +107,11 @@ class CustomNote extends HTMLElement {
     editNote(event) {
         let editButton = event.target;
         console.log(event);
-        let noteText = event.target.previousElementSibling; //get reference to note text
+        let noteText = event.target.parentElement.previousElementSibling; //get reference to note text
 
         let confirmButton = document.createElement("button");
         confirmButton.appendChild(document.createTextNode("Confirm"));
         confirmButton.setAttribute("class", "editButton");
-
         const confirmClickSubscription =
           fromEvent(confirmButton, 'click').subscribe(e => this.confirmNote(e));
         //change button
@@ -126,7 +125,7 @@ class CustomNote extends HTMLElement {
 
     confirmNote(event) {
         let confirmButton = event.target;
-        let noteInput = event.target.previousElementSibling; //get textarea reference
+        let noteInput = event.target.parentElement.previousElementSibling; //get textarea reference
 
         let editButton = document.createElement("button");
         editButton.appendChild(document.createTextNode("Edit"));
