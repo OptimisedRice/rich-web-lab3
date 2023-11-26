@@ -167,7 +167,6 @@ class CustomNote extends HTMLElement {
         //add title
         let title = document.createElement("h3");
         title.style.margin = "0";
-        title.style.color = "white";
 
         //number of notes as note id
         title.appendChild(document.createTextNode("Note " + (counter + 1))); //add string text to the p element
