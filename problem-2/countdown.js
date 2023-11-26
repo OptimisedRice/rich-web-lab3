@@ -70,19 +70,22 @@ const decrementSeconds = () => {
     return clearInterval(countdownInterval);
   }
 
-  secondsGlobal--;
+  if(secondsGlobal !== 0) {
+    secondsGlobal--;
+  }
   secondsSubject.next(secondsGlobal);
   updateOutput();
 }
 
 const decrementMinutes = (test) => {
-  secondsGlobal = 59;
+
   if(minutesGlobal === 0) {
 
     return minutesSubject.next(0);
   }
 
   minutesGlobal--;
+  secondsGlobal = 59;
   minutesSubject.next(minutesGlobal);
   updateOutput();
 }
